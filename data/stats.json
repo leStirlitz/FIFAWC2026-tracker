@@ -1,0 +1,689 @@
+{
+  "lastUpdated": "2026-07-04T00:00:00.000Z",
+  "tournament": {
+    "totalGoals": 148,
+    "goalsPerMatch": 2.05,
+    "topScoringTeam": {
+      "name": "France",
+      "goals": 19
+    },
+    "redCards": 12,
+    "yellowCards": 180,
+    "penaltiesAwarded": 6,
+    "penaltyShootouts": 3
+  },
+  "goldenBoot": [
+    {
+      "rank": 1,
+      "name": "Lionel Messi",
+      "country": "Argentina",
+      "countryCode": "ARG",
+      "flag": "ARG",
+      "club": "Inter Miami",
+      "played": 4,
+      "goals": 7,
+      "assists": 1
+    },
+    {
+      "rank": 2,
+      "name": "Kylian Mbappe",
+      "country": "France",
+      "countryCode": "FRA",
+      "flag": "FRA",
+      "club": "Real Madrid",
+      "played": 4,
+      "goals": 6,
+      "assists": 2
+    },
+    {
+      "rank": 3,
+      "name": "Erling Haaland",
+      "country": "Norway",
+      "countryCode": "NOR",
+      "flag": "NOR",
+      "club": "Man City",
+      "played": 4,
+      "goals": 5,
+      "assists": 1
+    },
+    {
+      "rank": 3,
+      "name": "Harry Kane",
+      "country": "England",
+      "countryCode": "ENG",
+      "flag": "ENG",
+      "club": "Bayern Munich",
+      "played": 4,
+      "goals": 5,
+      "assists": 0
+    },
+    {
+      "rank": 5,
+      "name": "Ousmane Dembele",
+      "country": "France",
+      "countryCode": "FRA",
+      "flag": "FRA",
+      "club": "PSG",
+      "played": 4,
+      "goals": 4,
+      "assists": 2
+    },
+    {
+      "rank": 5,
+      "name": "Vinicius Junior",
+      "country": "Brazil",
+      "countryCode": "BRA",
+      "flag": "BRA",
+      "club": "Real Madrid",
+      "played": 4,
+      "goals": 4,
+      "assists": 1
+    },
+    {
+      "rank": 5,
+      "name": "Ismaila Sarr",
+      "country": "Senegal",
+      "countryCode": "SEN",
+      "flag": "SEN",
+      "club": "Crystal Palace",
+      "played": 4,
+      "goals": 4,
+      "assists": 0
+    },
+    {
+      "rank": 5,
+      "name": "Mikel Oyarzabal",
+      "country": "Spain",
+      "countryCode": "ESP",
+      "flag": "ESP",
+      "club": "Real Sociedad",
+      "played": 4,
+      "goals": 4,
+      "assists": 1
+    },
+    {
+      "rank": 9,
+      "name": "Deniz Undav",
+      "country": "Germany",
+      "countryCode": "GER",
+      "flag": "GER",
+      "club": "Stuttgart",
+      "played": 4,
+      "goals": 3,
+      "assists": 2
+    },
+    {
+      "rank": 9,
+      "name": "Cristiano Ronaldo",
+      "country": "Portugal",
+      "countryCode": "POR",
+      "flag": "POR",
+      "club": "Al Nassr",
+      "played": 4,
+      "goals": 3,
+      "assists": 0
+    },
+    {
+      "rank": 9,
+      "name": "Julian Quinones",
+      "country": "Mexico",
+      "countryCode": "MEX",
+      "flag": "MEX",
+      "club": "Club America",
+      "played": 4,
+      "goals": 3,
+      "assists": 1
+    },
+    {
+      "rank": 9,
+      "name": "Cody Gakpo",
+      "country": "Netherlands",
+      "countryCode": "NED",
+      "flag": "NED",
+      "club": "Liverpool",
+      "played": 4,
+      "goals": 3,
+      "assists": 1
+    },
+    {
+      "rank": 9,
+      "name": "Folarin Balogun",
+      "country": "USA",
+      "countryCode": "USA",
+      "flag": "USA",
+      "club": "Monaco",
+      "played": 4,
+      "goals": 3,
+      "assists": 0
+    },
+    {
+      "rank": 9,
+      "name": "Johan Manzambi",
+      "country": "Switzerland",
+      "countryCode": "SUI",
+      "flag": "SUI",
+      "club": "Young Boys",
+      "played": 4,
+      "goals": 3,
+      "assists": 2
+    },
+    {
+      "rank": 9,
+      "name": "Jonathan David",
+      "country": "Canada",
+      "countryCode": "CAN",
+      "flag": "CAN",
+      "club": "Lille",
+      "played": 4,
+      "goals": 3,
+      "assists": 0
+    }
+  ],
+  "assists": [
+    {
+      "rank": 1,
+      "name": "Michael Olise",
+      "country": "France",
+      "countryCode": "FRA",
+      "flag": "FRA",
+      "club": "Bayern Munich",
+      "played": 4,
+      "assists": 5,
+      "goals": 1
+    },
+    {
+      "rank": 2,
+      "name": "Bruno Guimaraes",
+      "country": "Brazil",
+      "countryCode": "BRA",
+      "flag": "BRA",
+      "club": "Newcastle",
+      "played": 4,
+      "assists": 4,
+      "goals": 0
+    },
+    {
+      "rank": 3,
+      "name": "Roberto Alvarado",
+      "country": "Mexico",
+      "countryCode": "MEX",
+      "flag": "MEX",
+      "club": "Chivas",
+      "played": 4,
+      "assists": 3,
+      "goals": 0
+    },
+    {
+      "rank": 3,
+      "name": "Alexander Isak",
+      "country": "Sweden",
+      "countryCode": "SWE",
+      "flag": "SWE",
+      "club": "Newcastle",
+      "played": 4,
+      "assists": 3,
+      "goals": 2
+    },
+    {
+      "rank": 3,
+      "name": "Martin Odegaard",
+      "country": "Norway",
+      "countryCode": "NOR",
+      "flag": "NOR",
+      "club": "Arsenal",
+      "played": 4,
+      "assists": 3,
+      "goals": 1
+    },
+    {
+      "rank": 3,
+      "name": "Florian Wirtz",
+      "country": "Germany",
+      "countryCode": "GER",
+      "flag": "GER",
+      "club": "Leverkusen",
+      "played": 4,
+      "assists": 3,
+      "goals": 1
+    },
+    {
+      "rank": 7,
+      "name": "Kylian Mbappe",
+      "country": "France",
+      "countryCode": "FRA",
+      "flag": "FRA",
+      "club": "Real Madrid",
+      "played": 4,
+      "assists": 2,
+      "goals": 6
+    },
+    {
+      "rank": 7,
+      "name": "Ousmane Dembele",
+      "country": "France",
+      "countryCode": "FRA",
+      "flag": "FRA",
+      "club": "PSG",
+      "played": 4,
+      "assists": 2,
+      "goals": 4
+    },
+    {
+      "rank": 7,
+      "name": "Mohamed Salah",
+      "country": "Egypt",
+      "countryCode": "EGY",
+      "flag": "EGY",
+      "club": "Liverpool",
+      "played": 4,
+      "assists": 2,
+      "goals": 1
+    },
+    {
+      "rank": 7,
+      "name": "Bukayo Saka",
+      "country": "England",
+      "countryCode": "ENG",
+      "flag": "ENG",
+      "club": "Arsenal",
+      "played": 4,
+      "assists": 2,
+      "goals": 1
+    }
+  ],
+  "starPlayers": [
+    {
+      "name": "Messi",
+      "country": "Argentina",
+      "flag": "ARG",
+      "played": 4,
+      "goals": 7,
+      "assists": 1,
+      "status": "R16 Jul 7",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Mbappe",
+      "country": "France",
+      "flag": "FRA",
+      "played": 4,
+      "goals": 6,
+      "assists": 2,
+      "status": "R16 Jul 4",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Ronaldo",
+      "country": "Portugal",
+      "flag": "POR",
+      "played": 4,
+      "goals": 3,
+      "assists": 0,
+      "status": "R16 Jul 6",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Haaland",
+      "country": "Norway",
+      "flag": "NOR",
+      "played": 4,
+      "goals": 5,
+      "assists": 1,
+      "status": "R16 Jul 5",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Vinicius Jr",
+      "country": "Brazil",
+      "flag": "BRA",
+      "played": 4,
+      "goals": 4,
+      "assists": 1,
+      "status": "R16 Jul 5",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Kane",
+      "country": "England",
+      "flag": "ENG",
+      "played": 4,
+      "goals": 5,
+      "assists": 0,
+      "status": "R16 Jul 5",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Bellingham",
+      "country": "England",
+      "flag": "ENG",
+      "played": 4,
+      "goals": 2,
+      "assists": 1,
+      "status": "R16 Jul 5",
+      "statusColor": "#f59e0b"
+    },
+    {
+      "name": "Yamal",
+      "country": "Spain",
+      "flag": "ESP",
+      "played": 4,
+      "goals": 1,
+      "assists": 2,
+      "status": "R16 Jul 6",
+      "statusColor": "#f59e0b"
+    }
+  ],
+  "distanceCovered": [
+    {
+      "rank": 1,
+      "name": "Viktor Claesson",
+      "country": "Sweden",
+      "flag": "SWE",
+      "position": "MF",
+      "matches": 4,
+      "totalKm": 48.2,
+      "avgKm": 12.05
+    },
+    {
+      "rank": 2,
+      "name": "Martin Odegaard",
+      "country": "Norway",
+      "flag": "NOR",
+      "position": "MF",
+      "matches": 4,
+      "totalKm": 47.8,
+      "avgKm": 11.95
+    },
+    {
+      "rank": 3,
+      "name": "Joshua Kimmich",
+      "country": "Germany",
+      "flag": "GER",
+      "position": "MF",
+      "matches": 4,
+      "totalKm": 47.1,
+      "avgKm": 11.78
+    },
+    {
+      "rank": 4,
+      "name": "Luka Modric",
+      "country": "Croatia",
+      "flag": "CRO",
+      "position": "MF",
+      "matches": 4,
+      "totalKm": 46.4,
+      "avgKm": 11.6
+    },
+    {
+      "rank": 5,
+      "name": "Declan Rice",
+      "country": "England",
+      "flag": "ENG",
+      "position": "MF",
+      "matches": 4,
+      "totalKm": 45.9,
+      "avgKm": 11.48
+    },
+    {
+      "rank": 6,
+      "name": "Ime Okon",
+      "country": "South Africa",
+      "flag": "RSA",
+      "position": "MF",
+      "matches": 4,
+      "totalKm": 39.6,
+      "avgKm": 9.9
+    },
+    {
+      "rank": 618,
+      "name": "Lionel Messi",
+      "country": "Argentina",
+      "flag": "ARG",
+      "position": "FW",
+      "matches": 4,
+      "totalKm": 32.4,
+      "avgKm": 8.1,
+      "highlight": true
+    }
+  ],
+  "redCards": [
+    {
+      "match": "MEX vs RSA",
+      "homeFlag": "MEX",
+      "awayFlag": "RSA",
+      "player": "Sithole",
+      "playerFlag": "RSA",
+      "minute": "38'",
+      "reason": "DOGSO - Last defender foul"
+    },
+    {
+      "match": "MEX vs RSA",
+      "homeFlag": "MEX",
+      "awayFlag": "RSA",
+      "player": "Zwane",
+      "playerFlag": "RSA",
+      "minute": "67'",
+      "reason": "Violent conduct - Head contact"
+    },
+    {
+      "match": "MEX vs RSA",
+      "homeFlag": "MEX",
+      "awayFlag": "RSA",
+      "player": "Montes",
+      "playerFlag": "MEX",
+      "minute": "90+2'",
+      "reason": "DOGSO - Attacking position"
+    },
+    {
+      "match": "QAT vs CAN",
+      "homeFlag": "QAT",
+      "awayFlag": "CAN",
+      "player": "Ahmed",
+      "playerFlag": "QAT",
+      "minute": "34'",
+      "reason": "DOGSO - Last defender"
+    },
+    {
+      "match": "QAT vs CAN",
+      "homeFlag": "QAT",
+      "awayFlag": "CAN",
+      "player": "Madibo",
+      "playerFlag": "QAT",
+      "minute": "52'",
+      "reason": "Serious foul play"
+    },
+    {
+      "match": "BIH vs SUI",
+      "homeFlag": "BIH",
+      "awayFlag": "SUI",
+      "player": "Muharemovic",
+      "playerFlag": "BIH",
+      "minute": "58'",
+      "reason": "DOGSO - Edge of box"
+    },
+    {
+      "match": "BEL vs IRN",
+      "homeFlag": "BEL",
+      "awayFlag": "IRN",
+      "player": "Ngoy",
+      "playerFlag": "BEL",
+      "minute": "67'",
+      "reason": "Serious foul play"
+    },
+    {
+      "match": "IRQ vs SEN",
+      "homeFlag": "IRQ",
+      "awayFlag": "SEN",
+      "player": "Sulaka",
+      "playerFlag": "IRQ",
+      "minute": "13'",
+      "reason": "DOGSO - 4th fastest WC red ever"
+    },
+    {
+      "match": "PAR vs TUR",
+      "homeFlag": "PAR",
+      "awayFlag": "TUR",
+      "player": "Almiron",
+      "playerFlag": "PAR",
+      "minute": "45'",
+      "reason": "Covering mouth - dissent"
+    },
+    {
+      "match": "ECU vs MEX",
+      "homeFlag": "ECU",
+      "awayFlag": "MEX",
+      "player": "Hincapie",
+      "playerFlag": "ECU",
+      "minute": "90+3'",
+      "reason": "Covering mouth - dissent"
+    },
+    {
+      "match": "URU vs ESP",
+      "homeFlag": "URU",
+      "awayFlag": "ESP",
+      "player": "Canobbio",
+      "playerFlag": "URU",
+      "minute": "82'",
+      "reason": "Violent conduct"
+    },
+    {
+      "match": "USA vs BIH",
+      "homeFlag": "USA",
+      "awayFlag": "BIH",
+      "player": "Balogun",
+      "playerFlag": "USA",
+      "minute": "64'",
+      "reason": "Serious foul play - ankle stamp",
+      "highlight": true
+    }
+  ],
+  "yellowCards": [
+    {
+      "rank": 1,
+      "team": "Haiti",
+      "flag": "HAI",
+      "played": 3,
+      "cards": 7
+    },
+    {
+      "rank": 2,
+      "team": "Bosnia",
+      "flag": "BIH",
+      "played": 3,
+      "cards": 6
+    },
+    {
+      "rank": 3,
+      "team": "Paraguay",
+      "flag": "PAR",
+      "played": 4,
+      "cards": 6
+    },
+    {
+      "rank": 4,
+      "team": "Brazil",
+      "flag": "BRA",
+      "played": 4,
+      "cards": 5
+    },
+    {
+      "rank": 5,
+      "team": "Canada",
+      "flag": "CAN",
+      "played": 4,
+      "cards": 5
+    },
+    {
+      "rank": 6,
+      "team": "Scotland",
+      "flag": "SCO",
+      "played": 3,
+      "cards": 5
+    }
+  ],
+  "penalties": [
+    {
+      "match": "BEL vs SEN",
+      "team": "Belgium",
+      "flag": "BEL",
+      "result": "scored"
+    },
+    {
+      "match": "FRA vs SWE",
+      "team": "France",
+      "flag": "FRA",
+      "result": "scored"
+    },
+    {
+      "match": "ENG vs CRO",
+      "team": "England",
+      "flag": "ENG",
+      "result": "scored"
+    },
+    {
+      "match": "ESP vs AUT",
+      "team": "Spain",
+      "flag": "ESP",
+      "result": "scored"
+    },
+    {
+      "match": "ARG vs ALG",
+      "team": "Argentina",
+      "flag": "ARG",
+      "result": "missed"
+    },
+    {
+      "match": "BRA vs JPN",
+      "team": "Brazil",
+      "flag": "BRA",
+      "result": "scored"
+    }
+  ],
+  "referees": [
+    {
+      "name": "Ma Ning",
+      "country": "China",
+      "flag": "CHN",
+      "matches": 3,
+      "yellows": 14,
+      "reds": 2,
+      "penalties": 2
+    },
+    {
+      "name": "Clement Turpin",
+      "country": "France",
+      "flag": "FRA",
+      "matches": 3,
+      "yellows": 9,
+      "reds": 1,
+      "penalties": 1
+    },
+    {
+      "name": "Ismail Elfath",
+      "country": "USA",
+      "flag": "USA",
+      "matches": 2,
+      "yellows": 7,
+      "reds": 1,
+      "penalties": 0
+    },
+    {
+      "name": "Jesus Valenzuela",
+      "country": "Venezuela",
+      "flag": "VEN",
+      "matches": 3,
+      "yellows": 8,
+      "reds": 2,
+      "penalties": 1
+    },
+    {
+      "name": "Slavko Vincic",
+      "country": "Slovenia",
+      "flag": "SVN",
+      "matches": 2,
+      "yellows": 5,
+      "reds": 0,
+      "penalties": 1
+    }
+  ]
+}
