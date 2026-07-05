@@ -1,0 +1,1198 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVGLYDMGPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EVGLYDMGPW');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA World Cup 2026 - Knockout Bracket & Stats</title>
+
+  <meta property="og:title" content="🏆 FIFA World Cup 2026 - Live Bracket & Stats">
+  <meta property="og:description" content="Live knockout bracket, Golden Boot race, player stats & match schedule. Messi vs Mbappé - who wins the Golden Boot?">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lestirlitz.github.io/worldcup2026-tracker/">
+  <meta property="og:image" content="https://lestirlitz.github.io/worldcup2026-tracker/thumbnail.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🏆 FIFA World Cup 2026 - Live Bracket & Stats">
+  <meta name="twitter:description" content="Live knockout bracket, Golden Boot race, player stats & match schedule.">
+  <meta name="twitter:image" content="https://lestirlitz.github.io/worldcup2026-tracker/thumbnail.jpg">
+
+  <meta name="description" content="FIFA World Cup 2026 live knockout bracket, player statistics, Golden Boot standings, and match schedule. Updated automatically.">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    h1 { text-align: center; margin-bottom: 0.5rem; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 1rem; font-size: 0.9rem; }
+    .update-note { text-align: center; color: #f59e0b; margin-bottom: 1rem; font-size: 0.85rem; }
+
+    .tab-container {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+    }
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #2d3748;
+      border: 2px solid #4a5568;
+      color: #888;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .tab-btn:hover {
+      border-color: #f59e0b;
+      color: #f59e0b;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border-color: #f59e0b;
+      color: #1a1a2e;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .bracket-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      overflow-x: auto;
+      padding: 1rem;
+    }
+
+    .round { display: flex; flex-direction: column; justify-content: space-around; min-width: 180px; }
+    .round-title {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #f59e0b;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .match {
+      background: #2d3748;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+      border: 1px solid #4a5568;
+    }
+    .match.completed { border-color: #22c55e; }
+    .match.live { border-color: #ef4444; animation: pulse 2s infinite; }
+    .match.upcoming { border-color: #4a5568; opacity: 0.85; }
+    .match.today {
+      border-color: #f59e0b;
+      border-width: 2px;
+      opacity: 1;
+      background: linear-gradient(135deg, #2d3748 0%, #3d2f1e 100%);
+      animation: glowToday 2s ease-in-out infinite;
+    }
+
+    @keyframes glowToday {
+      0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.3); }
+      50% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.6); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+    }
+
+    .team {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #4a5568;
+    }
+    .team:last-child { border-bottom: none; }
+    .team.winner { background: rgba(34, 197, 94, 0.2); }
+    .team.loser { opacity: 0.5; }
+    .team.tbd { color: #888; font-style: italic; }
+
+    .team-name { font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+    .flag { font-size: 1.2rem; }
+    .score { font-weight: bold; color: #f59e0b; min-width: 25px; text-align: right; }
+
+    .match-info {
+      background: #1a202c;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.7rem;
+      color: #888;
+      text-align: center;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .legend-dot.completed { background: #22c55e; }
+    .legend-dot.today { background: #f59e0b; }
+    .legend-dot.upcoming { background: #4a5568; }
+
+    .stats {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #2d3748;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .stats h2 { margin-bottom: 1rem; font-size: 1.2rem; color: #f59e0b; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+    .stat-item { text-align: center; }
+    .stat-value { font-size: 1.5rem; font-weight: bold; color: #22c55e; }
+    .stat-label { font-size: 0.8rem; color: #888; }
+
+    .player-stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .stats-section {
+      background: #2d3748;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .stats-section h2 {
+      color: #f59e0b;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .player-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .player-table th {
+      background: #1a202c;
+      padding: 0.75rem;
+      text-align: left;
+      color: #f59e0b;
+      font-size: 0.85rem;
+      border-bottom: 2px solid #4a5568;
+    }
+    .player-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #4a5568;
+      font-size: 0.9rem;
+    }
+    .player-table tr:hover {
+      background: rgba(245, 158, 11, 0.1);
+    }
+    .player-table .rank {
+      width: 40px;
+      text-align: center;
+      font-weight: bold;
+      color: #f59e0b;
+    }
+    .player-table .rank.gold { color: #ffd700; }
+    .player-table .rank.silver { color: #c0c0c0; }
+    .player-table .rank.bronze { color: #cd7f32; }
+    .player-name {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .player-club { color: #888; font-size: 0.8rem; }
+    .stat-highlight {
+      font-weight: bold;
+      color: #22c55e;
+      font-size: 1.1rem;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem 0.5rem; }
+      h1 { font-size: 1.5rem; }
+      .subtitle { font-size: 0.8rem; }
+      .update-note { font-size: 0.75rem; padding: 0 0.5rem; }
+      .tab-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+      .bracket-container { justify-content: flex-start; padding: 0.5rem; gap: 0.5rem; }
+      .round { min-width: 150px; }
+      .round-title { font-size: 0.75rem; }
+      .match { margin: 0.3rem 0; }
+      .team { padding: 0.4rem 0.5rem; }
+      .team-name { font-size: 0.8rem; }
+      .flag { font-size: 1rem; }
+      .score { font-size: 0.85rem; }
+      .match-info { font-size: 0.65rem; padding: 0.2rem 0.4rem; }
+      .stats { margin: 1rem auto; padding: 1rem; border-radius: 8px; }
+      .stats h2 { font-size: 1rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .stat-value { font-size: 1.2rem; }
+      .stat-label { font-size: 0.7rem; }
+      .player-stats-container { padding: 0; }
+      .stats-section { padding: 1rem; margin-bottom: 1rem; border-radius: 8px; }
+      .stats-section h2 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+      .player-table { font-size: 0.8rem; }
+      .player-table th, .player-table td { padding: 0.5rem 0.3rem; }
+      .player-table .rank { width: 30px; }
+      .player-club { display: none; }
+      .stat-highlight { font-size: 1rem; }
+      .stats-row { grid-template-columns: 1fr; gap: 1rem; }
+      .legend { gap: 1rem; margin-top: 1rem; }
+      .legend-item { font-size: 0.75rem; }
+    }
+
+    @media (max-width: 400px) {
+      h1 { font-size: 1.3rem; }
+      .tab-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+      .round { min-width: 130px; }
+      .team-name { font-size: 0.75rem; }
+      .player-table th, .player-table td { padding: 0.4rem 0.2rem; font-size: 0.75rem; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      body { padding: 1.5rem; }
+      .bracket-container { gap: 0.75rem; }
+      .round { min-width: 160px; }
+      .stats { max-width: 95%; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .player-table { font-size: 0.85rem; }
+      .player-table th, .player-table td { padding: 0.6rem 0.5rem; }
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <h1>🏆 FIFA World Cup 2026</h1>
+  <p class="subtitle">United States • Mexico • Canada</p>
+  <p class="update-note" id="update-note">Loading latest update...</p>
+
+  <div class="tab-container">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab(event, 'bracket')">🏟️ Bracket</button>
+      <button class="tab-btn" onclick="showTab(event, 'stats')">⚽ Player Stats</button>
+      <button class="tab-btn" onclick="showTab(event, 'physical')">🏃 Physical & Discipline</button>
+    </div>
+  </div>
+
+  <div id="bracket-tab" class="tab-content active">
+    <div id="bracket-container" class="bracket-container">
+      <p style="color: #888; text-align: center; width: 100%;">Loading bracket...</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot completed"></div> Completed</div>
+      <div class="legend-item"><div class="legend-dot today"></div> Today</div>
+      <div class="legend-item"><div class="legend-dot upcoming"></div> Upcoming</div>
+    </div>
+
+    <div class="stats">
+      <h2>📊 Tournament Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="knockout-progress">-</div>
+          <div class="stat-label">Knockout Matches Played</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="teams-remaining">-</div>
+          <div class="stat-label">Teams Remaining</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="penalty-shootouts">-</div>
+          <div class="stat-label">Penalty Shootouts</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="final-date">Jul 19</div>
+          <div class="stat-label">Final Date</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <h2>🎬 Completed Matches - Highlights (Sporza)</h2>
+      <p style="font-size: 0.85rem; color: #888; margin-bottom: 1rem;">Click the 🎥 icon to watch match highlights on Sporza YouTube</p>
+      <div id="completed-matches-table"></div>
+      <p id="today-matches-note" style="margin-top: 0.75rem; font-size: 0.85rem; color: #f59e0b;"></p>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: #888;">
+        📺 <a href="https://www.youtube.com/@Sporza_be" target="_blank" style="color: #f59e0b;">Visit Sporza YouTube Channel</a> for all World Cup content
+      </p>
+    </div>
+
+    <div class="stats">
+      <h2>🔥 Key Upsets & Headlines</h2>
+      <ul style="padding-left: 1.5rem; line-height: 1.8;">
+        <li><strong>Germany OUT</strong> - Lost on penalties to Paraguay</li>
+        <li><strong>Netherlands OUT</strong> - Morocco advanced after penalty shootout</li>
+        <li><strong>Iberian Clash</strong> - Portugal vs Spain is one of the biggest R16 ties</li>
+        <li><strong>USA vs Belgium</strong> - Heavyweight R16 matchup in Seattle</li>
+        <li><strong>Messi Watch</strong> - Argentina chasing another deep run</li>
+        <li><strong>Host Mexico</strong> - Huge home atmosphere in knockout stage</li>
+      </ul>
+    </div>
+
+    <div class="stats">
+      <h2>📅 Upcoming Matches (CET Timezone)</h2>
+      <div id="upcoming-matches-table"></div>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: #888;">* Next day (after midnight CET)</p>
+    </div>
+  </div>
+
+  <div id="stats-tab" class="tab-content">
+    <div class="player-stats-container">
+      <div class="stats-section">
+        <h2>👟 Golden Boot Race - Top Scorers</h2>
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 1rem;">Updated automatically from current leaders data</p>
+        <div id="golden-boot-table"><p style="color: #888;">Loading stats...</p></div>
+      </div>
+
+      <div class="stats-section">
+        <h2>🅰️ Top Assist Providers</h2>
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 1rem;">Updated automatically from current leaders data</p>
+        <div id="assists-table"><p style="color: #888;">Loading stats...</p></div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stats-section">
+          <h2>⭐ Star Players Watch</h2>
+          <div id="star-players-table"><p style="color: #888;">Loading stats...</p></div>
+        </div>
+
+        <div class="stats-section">
+          <h2>⚽ Golden Boot History</h2>
+          <table class="player-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Winner</th>
+                <th>⚽</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>2022</td><td class="player-name">Kylian Mbappé (France)</td><td class="stat-highlight">8</td></tr>
+              <tr><td>2018</td><td class="player-name">Harry Kane (England)</td><td class="stat-highlight">6</td></tr>
+              <tr><td>2014</td><td class="player-name">James Rodríguez (Colombia)</td><td class="stat-highlight">6</td></tr>
+              <tr><td>2010</td><td class="player-name">Thomas Müller (Germany)</td><td class="stat-highlight">5</td></tr>
+              <tr><td>2006</td><td class="player-name">Miroslav Klose (Germany)</td><td class="stat-highlight">5</td></tr>
+              <tr style="border-top: 2px solid #f59e0b;"><td colspan="2" style="color: #f59e0b;">All-time WC Record</td><td></td></tr>
+              <tr><td>1958</td><td class="player-name">Just Fontaine (France)</td><td class="stat-highlight">13</td></tr>
+              <tr><td>Career</td><td class="player-name">Miroslav Klose (Germany)</td><td class="stat-highlight">16</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h2>📈 Tournament Facts</h2>
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+          <div class="stat-item">
+            <div class="stat-value" id="total-goals">-</div>
+            <div class="stat-label">Total Goals</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="goals-per-match">-</div>
+            <div class="stat-label">Goals Per Match</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="top-scoring-team">-</div>
+            <div class="stat-label">Top Scoring Team</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">16</div>
+            <div class="stat-label">Klose Career WC Record</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">13</div>
+            <div class="stat-label">Just Fontaine Single-Tournament Record</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h2>📰 Golden Boot Storylines</h2>
+        <ul style="padding-left: 1.5rem; line-height: 2;">
+          <li><strong>Messi vs Mbappé:</strong> The Golden Boot race remains one of the defining stories of the tournament.</li>
+          <li><strong>France’s attack:</strong> France continue to produce both goals and assists at elite volume.</li>
+          <li><strong>Haaland watch:</strong> Norway’s striker remains among the most dangerous finishers.</li>
+          <li><strong>Kane consistency:</strong> England’s captain is again among the top scorers.</li>
+          <li><strong>Assist race:</strong> Creative players are shaping the knockout rounds as much as the scorers.</li>
+          <li><strong>Knockout pressure:</strong> Every remaining match can reshape the leaderboard.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="physical-tab" class="tab-content">
+    <div class="player-stats-container">
+      <div class="stats-section">
+        <h2>🏃 Distance Covered - Top Runners</h2>
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 1rem;">Players who ran the most during the tournament</p>
+        <div id="distance-table">Loading distance data...</div>
+      </div>
+
+      <div class="stats-section">
+        <h2>🟥 Red Cards - Tournament Discipline</h2>
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 1rem;">Major dismissals and notable incidents</p>
+        <div id="red-cards-table">Loading red cards data...</div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stats-section">
+          <h2>🟨 Most Yellow Cards (Teams)</h2>
+          <div id="yellow-cards-table">Loading yellow cards data...</div>
+        </div>
+
+        <div class="stats-section">
+          <h2>⚪ Penalties Awarded</h2>
+          <div id="penalties-table">Loading penalties data...</div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h2>👨‍⚖️ Referee Statistics</h2>
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 1rem;">Notable officials and disciplinary records</p>
+        <div id="referees-table">Loading referees data...</div>
+      </div>
+
+      <div class="stats-section">
+        <h2>📊 Tournament Discipline Summary</h2>
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+          <div class="stat-item">
+            <div class="stat-value" id="summary-red-cards">-</div>
+            <div class="stat-label">Red Cards</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="summary-yellow-cards">-</div>
+            <div class="stat-label">Yellow Cards</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="summary-penalties">-</div>
+            <div class="stat-label">Penalties (open play)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="summary-shootouts">-</div>
+            <div class="stat-label">Penalty Shootouts</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">28</div>
+            <div class="stat-label">WC Record (2006)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(event, tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function isToday(dateStr) {
+      if (!dateStr) return false;
+      const now = new Date();
+      const local = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const target = new Date(dateStr + 'T12:00:00');
+      return (
+        local.getFullYear() === target.getFullYear() &&
+        local.getMonth() === target.getMonth() &&
+        local.getDate() === target.getDate()
+      );
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr + 'T12:00:00');
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return months[date.getMonth()] + ' ' + date.getDate();
+    }
+
+    function formatDateWithDay(dateStr) {
+      const date = new Date(dateStr + 'T12:00:00');
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate();
+    }
+
+    function formatLastUpdated(isoString) {
+      if (!isoString) return 'Unknown';
+      const d = new Date(isoString);
+      return d.toLocaleString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }) + ' CET';
+    }
+
+    function getSporzaUrl(homeName, awayName) {
+      const cleanName = (n) =>
+        n.replace('DR Congo', 'Congo')
+         .replace('Ivory Coast', "Côte d'Ivoire");
+      return <span class="truncated-code-wrapper" data-full-text="https://www.youtube.com/@Sporza_be/search?query=${encodeURIComponent(cleanName(homeName))}+${encodeURIComponent(cleanName(awayName))}+WK+2026" title="https://www.youtube.com/@Sporza_be/search?query=${encodeURIComponent(cleanName(homeName))}+${encodeURIComponent(cleanName(awayName))}+WK+2026"><code class="truncated-code">https://www.you…</code><span class="copy-code-inline-btn" data-copy-text="https://www.youtube.com/@Sporza_be/search?query=${encodeURIComponent(cleanName(homeName))}+${encodeURIComponent(cleanName(awayName))}+WK+2026"></span></span>;
+    }
+
+    function buildScoreDisplay(match) {
+      if (match.homeScore === null || match.homeScore === undefined) return '-';
+      let score = <span class="truncated-code-wrapper" data-full-text="${match.homeScore}-${match.awayScore}" title="${match.homeScore}-${match.awayScore}"><code class="truncated-code">${match.homeSco…</code><span class="copy-code-inline-btn" data-copy-text="${match.homeScore}-${match.awayScore}"></span></span>;
+      if (match.homePenalties !== undefined && match.awayPenalties !== undefined) {
+        score += <span class="truncated-code-wrapper" data-full-text=" (${match.homePenalties}-${match.awayPenalties} PKs)" title=" (${match.homePenalties}-${match.awayPenalties} PKs)"><code class="truncated-code"> (${match.homeP…</code><span class="copy-code-inline-btn" data-copy-text=" (${match.homePenalties}-${match.awayPenalties} PKs)"></span></span>;
+      } else if (match.notes === 'AET') {
+        score += ' (AET)';
+      }
+      return score;
+    }
+
+    function getRoundLabel(roundKey) {
+      const labels = { r32: 'R32', r16: 'R16', qf: 'QF', sf: 'SF', final: 'FINAL' };
+      return labels[roundKey] || roundKey.toUpperCase();
+    }
+
+    function getRoundBgColor(roundKey) {
+      const colors = {
+        r32: '',
+        r16: 'rgba(245, 158, 11, 0.1)',
+        qf: 'rgba(239, 68, 68, 0.1)',
+        sf: 'rgba(168, 85, 247, 0.1)',
+        final: 'rgba(245, 158, 11, 0.2)'
+      };
+      return colors[roundKey] || '';
+    }
+
+    function getRoundTextColor(roundKey) {
+      const colors = { r32: '', r16: '#f59e0b', qf: '#ef4444', sf: '#a855f7', final: '#f59e0b' };
+      return colors[roundKey] || '';
+    }
+
+    function getAllMatches(matchData) {
+      return Object.values(matchData.matches || {}).flat();
+    }
+
+    function countTeamsRemaining(matchData) {
+      const rounds = matchData.matches || {};
+      const order = ['final', 'sf', 'qf', 'r16', 'r32'];
+
+      for (const round of order) {
+        const matches = rounds[round] || [];
+        const teams = [];
+        for (const m of matches) {
+          if (m.status !== 'completed') {
+            if (m.homeTeam) teams.push(m.homeTeam.code);
+            if (m.awayTeam) teams.push(m.awayTeam.code);
+          }
+        }
+        const unique = [...new Set(teams)];
+        if (unique.length > 0) return unique.length;
+      }
+      return 0;
+    }
+
+    function renderDynamicMatchSummary(matchData) {
+      const tournament = matchData.tournament || {};
+      const allMatches = getAllMatches(matchData);
+      const played = allMatches.filter(m => m.status === 'completed').length;
+      const shootouts = allMatches.filter(m =>
+        m.status === 'completed' &&
+        (m.notes === 'PKs' || (m.homePenalties !== undefined && m.awayPenalties !== undefined))
+      ).length;
+
+      const progressEl = document.getElementById('knockout-progress');
+      const teamsEl = document.getElementById('teams-remaining');
+      const shootoutsEl = document.getElementById('penalty-shootouts');
+      const noteEl = document.getElementById('update-note');
+
+      if (progressEl) progressEl.textContent = <span class="truncated-code-wrapper" data-full-text="${played}/${tournament.totalKnockoutMatches || 16}" title="${played}/${tournament.totalKnockoutMatches || 16}"><code class="truncated-code">${played}/${tou…</code><span class="copy-code-inline-btn" data-copy-text="${played}/${tournament.totalKnockoutMatches || 16}"></span></span>;
+      if (teamsEl) teamsEl.textContent = countTeamsRemaining(matchData);
+      if (shootoutsEl) shootoutsEl.textContent = shootouts;
+
+      const upcomingKnown = allMatches
+        .filter(m => m.status !== 'completed' && m.homeTeam && m.awayTeam)
+        .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+
+      let note = <span class="truncated-code-wrapper" data-full-text="Last updated: ${formatLastUpdated(matchData.lastUpdated)}" title="Last updated: ${formatLastUpdated(matchData.lastUpdated)}"><code class="truncated-code">Last updated: $…</code><span class="copy-code-inline-btn" data-copy-text="Last updated: ${formatLastUpdated(matchData.lastUpdated)}"></span></span>;
+      if (tournament.stage) note += <span class="truncated-code-wrapper" data-full-text=" • ${tournament.stage}" title=" • ${tournament.stage}"><code class="truncated-code"> • ${tournament…</code><span class="copy-code-inline-btn" data-copy-text=" • ${tournament.stage}"></span></span>;
+
+      if (upcomingKnown.length > 0) {
+        const next = upcomingKnown[0];
+        note += <span class="truncated-code-wrapper" data-full-text=" • Next: ${next.homeTeam.name} vs ${next.awayTeam.name} (${formatDate(next.date)} ${next.time} CET)" title=" • Next: ${next.homeTeam.name} vs ${next.awayTeam.name} (${formatDate(next.date)} ${next.time} CET)"><code class="truncated-code"> • Next: ${next…</code><span class="copy-code-inline-btn" data-copy-text=" • Next: ${next.homeTeam.name} vs ${next.awayTeam.name} (${formatDate(next.date)} ${next.time} CET)"></span></span>;
+      }
+
+      if (noteEl) noteEl.textContent = note;
+    }
+
+    function renderCompletedMatches(data) {
+      const container = document.getElementById('completed-matches-table');
+      if (!container) return;
+
+      const completedMatches = [];
+      const todayMatches = [];
+
+      for (const [roundKey, matches] of Object.entries(data.matches)) {
+        for (const match of matches) {
+          if (!match.homeTeam || !match.awayTeam) continue;
+
+          if (match.status === 'completed') {
+            completedMatches.push({ ...match, round: roundKey });
+          } else if ((match.status === 'scheduled' || match.status === 'live') && isToday(match.date)) {
+            todayMatches.push({ ...match, round: roundKey });
+          }
+        }
+      }
+
+      completedMatches.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      let html = `<table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="border-bottom: 2px solid #4a5568; text-align: left;">
+            <th style="padding: 0.5rem; color: #f59e0b;">Date</th>
+            <th style="padding: 0.5rem; color: #f59e0b;">Match</th>
+            <th style="padding: 0.5rem; color: #f59e0b;">Score</th>
+            <th style="padding: 0.5rem; color: #f59e0b;">Highlights</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      for (const match of completedMatches) {
+        const isHighlight = match.homeTeam.code === 'BEL' || match.awayTeam.code === 'BEL';
+        html += `<tr style="border-bottom: 1px solid #4a5568;${isHighlight ? ' background: rgba(34, 197, 94, 0.1);' : ''}">
+          <td style="padding: 0.5rem;">${formatDate(match.date)}</td>
+          <td style="padding: 0.5rem;">${match.homeTeam.name} vs ${match.awayTeam.name}</td>
+          <td style="padding: 0.5rem; font-weight: bold;">${buildScoreDisplay(match)}</td>
+          <td style="padding: 0.5rem;"><a href="${getSporzaUrl(match.homeTeam.name, match.awayTeam.name)}" target="_blank" style="color: #ef4444; text-decoration: none;">🎥 Watch</a></td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+
+      const noteEl = document.getElementById('today-matches-note');
+      if (noteEl) {
+        if (todayMatches.length > 0) {
+          noteEl.textContent = <span class="truncated-code-wrapper" data-full-text="Today's matches: ${todayMatches.map(m =&gt; " title="Today's matches: ${todayMatches.map(m =&gt; "><code class="truncated-code">Today's matches…</code><span class="copy-code-inline-btn" data-copy-text="Today's matches: ${todayMatches.map(m =&gt; "></span></span>${m.homeTeam.name} vs ${m.awayTeam.name} (${m.time} CET)`).join(', ')}`;
+        } else {
+          noteEl.textContent = '';
+        }
+      }
+    }
+
+    function renderUpcomingMatches(data) {
+      const container = document.getElementById('upcoming-matches-table');
+      if (!container) return;
+
+      const upcomingMatches = [];
+
+      for (const [roundKey, matches] of Object.entries(data.matches)) {
+        for (const match of matches) {
+          if (match.status !== 'completed') {
+            upcomingMatches.push({ ...match, round: roundKey });
+          }
+        }
+      }
+
+      upcomingMatches.sort((a, b) => {
+        const dateCompare = new Date(a.date) - new Date(b.date);
+        if (dateCompare !== 0) return dateCompare;
+        return (a.time || '').localeCompare(b.time || '');
+      });
+
+      let html = `<table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid #4a5568; text-align: left;">
+            <th style="padding: 0.75rem; color: #f59e0b;">Date</th>
+            <th style="padding: 0.75rem; color: #f59e0b;">Time (CET)</th>
+            <th style="padding: 0.75rem; color: #f59e0b;">Match</th>
+            <th style="padding: 0.75rem; color: #f59e0b;">Round</th>
+            <th style="padding: 0.75rem; color: #f59e0b;">Venue</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      for (const match of upcomingMatches) {
+        const bgColor = getRoundBgColor(match.round);
+        const roundColor = getRoundTextColor(match.round);
+        const isFinal = match.round === 'final';
+
+        let matchDisplay;
+        if (match.homeTeam && match.awayTeam) {
+          matchDisplay = <span class="truncated-code-wrapper" data-full-text="${match.homeTeam.name} vs ${match.awayTeam.name}" title="${match.homeTeam.name} vs ${match.awayTeam.name}"><code class="truncated-code">${match.homeTea…</code><span class="copy-code-inline-btn" data-copy-text="${match.homeTeam.name} vs ${match.awayTeam.name}"></span></span>;
+        } else if (match.homeTeam) {
+          matchDisplay = <span class="truncated-code-wrapper" data-full-text="${match.homeTeam.name} vs TBD" title="${match.homeTeam.name} vs TBD"><code class="truncated-code">${match.homeTea…</code><span class="copy-code-inline-btn" data-copy-text="${match.homeTeam.name} vs TBD"></span></span>;
+        } else if (match.round === 'qf') {
+          matchDisplay = `QF: TBD vs TBD`;
+        } else if (match.round === 'sf') {
+          matchDisplay = `SF: TBD vs TBD`;
+        } else if (match.round === 'final') {
+          matchDisplay = `🏆 FINAL`;
+        } else {
+          matchDisplay = 'TBD vs TBD';
+        }
+
+        let timeDisplay = match.time || '-';
+        if (match.time) {
+          const hour = parseInt(match.time.split(':')[0], 10);
+          if (!Number.isNaN(hour) && hour < 12) timeDisplay += '*';
+        }
+
+        html += `<tr style="border-bottom: 1px solid #4a5568;${bgColor ? ' background: ' + bgColor + ';' : ''}${isFinal ? ' font-weight: bold;' : ''}">
+          <td style="padding: 0.75rem;">${formatDateWithDay(match.date)}</td>
+          <td style="padding: 0.75rem; color: #22c55e; font-weight: bold;">${timeDisplay}</td>
+          <td style="padding: 0.75rem;">${matchDisplay}</td>
+          <td style="padding: 0.75rem;${roundColor ? ' color: ' + roundColor + ';' : ''}">${getRoundLabel(match.round)}</td>
+          <td style="padding: 0.75rem;">${match.venue || 'TBD'}</td>
+        </tr>`;
+      }
+
+      html += `<tr style="border-bottom: 1px solid #4a5568;">
+        <td style="padding: 0.75rem;">Sat, Jul 18</td>
+        <td style="padding: 0.75rem; color: #22c55e; font-weight: bold;">23:00</td>
+        <td style="padding: 0.75rem;">3rd Place Match</td>
+        <td style="padding: 0.75rem;">3rd</td>
+        <td style="padding: 0.75rem;">Miami, FL</td>
+      </tr>`;
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderBracket(data) {
+      const container = document.getElementById('bracket-container');
+      if (!container) return;
+
+      const matches = data.matches;
+
+      function teamHtml(team, score, isWinner, isLoser, isTbd) {
+        let teamClass = 'team';
+        if (isWinner) teamClass += ' winner';
+        if (isLoser) teamClass += ' loser';
+        if (isTbd) teamClass += ' tbd';
+
+        const name = team ? team.name : 'TBD';
+        const flag = team && team.flag ? <span class="truncated-code-wrapper" data-full-text="&lt;span class=&quot;flag&quot;&gt;${team.flag}&lt;/span&gt;" title="&lt;span class=&quot;flag&quot;&gt;${team.flag}&lt;/span&gt;"><code class="truncated-code"><span class="fl…</code><span class="copy-code-inline-btn" data-copy-text="&lt;span class=&quot;flag&quot;&gt;${team.flag}&lt;/span&gt;"></span></span> : '';
+        const scoreDisplay = score !== null && score !== undefined ? score : '-';
+
+        return <span class="truncated-code-wrapper" data-full-text="&lt;div class=&quot;${teamClass}&quot;&gt;&lt;span class=&quot;team-name&quot;&gt;${flag}${name}&lt;/span&gt;&lt;span class=&quot;score&quot;&gt;${scoreDisplay}&lt;/span&gt;&lt;/div&gt;" title="&lt;div class=&quot;${teamClass}&quot;&gt;&lt;span class=&quot;team-name&quot;&gt;${flag}${name}&lt;/span&gt;&lt;span class=&quot;score&quot;&gt;${scoreDisplay}&lt;/span&gt;&lt;/div&gt;"><code class="truncated-code"><div class="${t…</code><span class="copy-code-inline-btn" data-copy-text="&lt;div class=&quot;${teamClass}&quot;&gt;&lt;span class=&quot;team-name&quot;&gt;${flag}${name}&lt;/span&gt;&lt;span class=&quot;score&quot;&gt;${scoreDisplay}&lt;/span&gt;&lt;/div&gt;"></span></span>;
+      }
+
+      function matchHtml(match) {
+        if (!match) return '';
+
+        let matchClass = 'match';
+        if (match.status === 'completed') matchClass += ' completed';
+        else if (match.status === 'live') matchClass += ' live';
+        else if (isToday(match.date)) matchClass += ' today';
+        else matchClass += ' upcoming';
+
+        const hasPenalties = match.homePenalties !== undefined && match.awayPenalties !== undefined;
+        const hasAET = match.notes === 'AET';
+
+        let homeWinner = false, awayWinner = false;
+        if (match.status === 'completed' && match.winner) {
+          homeWinner = match.winner === 'home';
+          awayWinner = match.winner === 'away';
+        }
+
+        let homeScore = match.homeScore;
+        let awayScore = match.awayScore;
+        if (hasPenalties) {
+          homeScore = <span class="truncated-code-wrapper" data-full-text="${match.homeScore} (${match.homePenalties})" title="${match.homeScore} (${match.homePenalties})"><code class="truncated-code">${match.homeSco…</code><span class="copy-code-inline-btn" data-copy-text="${match.homeScore} (${match.homePenalties})"></span></span>;
+          awayScore = <span class="truncated-code-wrapper" data-full-text="${match.awayScore} (${match.awayPenalties})" title="${match.awayScore} (${match.awayPenalties})"><code class="truncated-code">${match.awaySco…</code><span class="copy-code-inline-btn" data-copy-text="${match.awayScore} (${match.awayPenalties})"></span></span>;
+        }
+
+        const dateObj = match.date ? new Date(match.date + 'T12:00:00') : null;
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const dateStr = dateObj ? <span class="truncated-code-wrapper" data-full-text="${months[dateObj.getMonth()]} ${dateObj.getDate()}" title="${months[dateObj.getMonth()]} ${dateObj.getDate()}"><code class="truncated-code">${months[dateOb…</code><span class="copy-code-inline-btn" data-copy-text="${months[dateObj.getMonth()]} ${dateObj.getDate()}"></span></span> : '';
+
+        let info = dateStr;
+        if (match.venue) {
+          const venue = match.venue.split(',')[0];
+          info += ` • ${venue}`;
+        }
+        if (hasPenalties) info += ' (PKs)';
+        else if (hasAET) info += ' (AET)';
+
+        const hasTbd = !match.homeTeam || !match.awayTeam;
+
+        return `<div class="${matchClass}">
+          ${teamHtml(match.homeTeam, homeScore, homeWinner, awayWinner, hasTbd && !match.homeTeam)}
+          ${teamHtml(match.awayTeam, awayScore, awayWinner, homeWinner, hasTbd && !match.awayTeam)}
+          <div class="match-info">${info}</div>
+        </div>`;
+      }
+
+      function buildRound(title, matchList) {
+        let html = <span class="truncated-code-wrapper" data-full-text="&lt;div class=&quot;round&quot;&gt;&lt;div class=&quot;round-title&quot;&gt;${title}&lt;/div&gt;" title="&lt;div class=&quot;round&quot;&gt;&lt;div class=&quot;round-title&quot;&gt;${title}&lt;/div&gt;"><code class="truncated-code"><div class="rou…</code><span class="copy-code-inline-btn" data-copy-text="&lt;div class=&quot;round&quot;&gt;&lt;div class=&quot;round-title&quot;&gt;${title}&lt;/div&gt;"></span></span>;
+        for (const m of matchList) html += matchHtml(m);
+        html += '</div>';
+        return html;
+      }
+
+      const r32 = matches.r32 || [];
+      const r16 = matches.r16 || [];
+      const qf = matches.qf || [];
+      const sf = matches.sf || [];
+      const final = matches.final || [];
+
+      const r32Left = r32.slice(0, 8);
+      const r32Right = r32.slice(8, 16);
+      const r16Left = r16.slice(0, 4);
+      const r16Right = r16.slice(4, 8);
+      const qfLeft = [qf[0], qf[2]].filter(Boolean);
+      const qfRight = [qf[1], qf[3]].filter(Boolean);
+      const sfLeft = sf[0] ? [sf[0]] : [];
+      const sfRight = sf[1] ? [sf[1]] : [];
+      const finalMatch = final[0] ? [final[0]] : [];
+
+      let html = '';
+      html += buildRound('Round of 32', r32Left);
+      html += buildRound('Round of 16', r16Left);
+      html += buildRound('Quarterfinals', qfLeft);
+      html += buildRound('Semifinals', sfLeft);
+      html += buildRound('🏆 Final', finalMatch);
+      html += buildRound('Semifinals', sfRight);
+      html += buildRound('Quarterfinals', qfRight);
+      html += buildRound('Round of 16', r16Right);
+      html += buildRound('Round of 32', r32Right);
+
+      container.innerHTML = html;
+    }
+
+    function getRankClass(rank) {
+      if (rank === 1) return 'gold';
+      if (rank === 2) return 'silver';
+      if (rank === 3) return 'bronze';
+      return '';
+    }
+
+    function renderTournamentStatsSummary(data) {
+      const t = data.tournament || {};
+      const map = {
+        'total-goals': t.totalGoals,
+        'goals-per-match': t.goalsPerMatch,
+        'top-scoring-team': t.topScoringTeam ? <span class="truncated-code-wrapper" data-full-text="${t.topScoringTeam.name}: ${t.topScoringTeam.goals}" title="${t.topScoringTeam.name}: ${t.topScoringTeam.goals}"><code class="truncated-code">${t.topScoringT…</code><span class="copy-code-inline-btn" data-copy-text="${t.topScoringTeam.name}: ${t.topScoringTeam.goals}"></span></span> : '-',
+        'summary-red-cards': t.redCards,
+        'summary-yellow-cards': t.yellowCards,
+        'summary-penalties': t.penaltiesAwarded,
+        'summary-shootouts': t.penaltyShootouts
+      };
+
+      for (const [id, value] of Object.entries(map)) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value ?? '-';
+      }
+    }
+
+    function renderGoldenBoot(data) {
+      const container = document.getElementById('golden-boot-table');
+      if (!container || !data.goldenBoot) return;
+
+      const sorted = [...data.goldenBoot].sort((a, b) => {
+        if (b.goals !== a.goals) return b.goals - a.goals;
+        return b.assists - a.assists;
+      });
+
+      let currentRank = 1;
+      let lastGoals = -1;
+      for (let i = 0; i < sorted.length; i++) {
+        if (sorted[i].goals !== lastGoals) {
+          currentRank = i + 1;
+          lastGoals = sorted[i].goals;
+        }
+        sorted[i].dynamicRank = currentRank;
+      }
+
+      let html = `<table class="player-table">
+        <thead><tr>
+          <th class="rank">#</th><th>Player</th><th>Country</th><th>Club</th>
+          <th style="text-align:center;">Pld</th><th style="text-align:center;">Goals</th><th style="text-align:center;">Assists</th>
+        </tr></thead><tbody>`;
+
+      for (const p of sorted) {
+        const rankClass = getRankClass(p.dynamicRank);
+        const goalClass = p.goals >= 4 ? 'stat-highlight' : '';
+        html += `<tr>
+          <td class="rank ${rankClass}">${p.dynamicRank}</td>
+          <td class="player-name">${p.name}</td>
+          <td>${p.country}</td><td class="player-club">${p.club || ''}</td>
+          <td style="text-align:center;">${p.played}</td>
+          <td class="${goalClass}" style="text-align:center;">${p.goals}</td>
+          <td style="text-align:center;">${p.assists}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderAssists(data) {
+      const container = document.getElementById('assists-table');
+      if (!container || !data.assists) return;
+
+      const sorted = [...data.assists].sort((a, b) => {
+        if (b.assists !== a.assists) return b.assists - a.assists;
+        return b.goals - a.goals;
+      });
+
+      let currentRank = 1;
+      let lastAssists = -1;
+      for (let i = 0; i < sorted.length; i++) {
+        if (sorted[i].assists !== lastAssists) {
+          currentRank = i + 1;
+          lastAssists = sorted[i].assists;
+        }
+        sorted[i].dynamicRank = currentRank;
+      }
+
+      let html = `<table class="player-table">
+        <thead><tr>
+          <th class="rank">#</th><th>Player</th><th>Country</th><th>Club</th>
+          <th style="text-align:center;">Pld</th><th style="text-align:center;">Assists</th><th style="text-align:center;">Goals</th>
+        </tr></thead><tbody>`;
+
+      for (const p of sorted) {
+        const rankClass = getRankClass(p.dynamicRank);
+        const assistClass = p.assists >= 3 ? 'stat-highlight' : '';
+        html += `<tr>
+          <td class="rank ${rankClass}">${p.dynamicRank}</td>
+          <td class="player-name">${p.name}</td>
+          <td>${p.country}</td><td class="player-club">${p.club || ''}</td>
+          <td style="text-align:center;">${p.played}</td>
+          <td class="${assistClass}" style="text-align:center;">${p.assists}</td>
+          <td style="text-align:center;">${p.goals}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderStarPlayers(data) {
+      const container = document.getElementById('star-players-table');
+      if (!container || !data.starPlayers) return;
+
+      let html = `<table class="player-table">
+        <thead><tr><th>Player</th><th>Country</th><th>Pld</th><th>Goals</th><th>Assists</th><th>Status</th></tr></thead><tbody>`;
+
+      for (const p of data.starPlayers) {
+        const goalClass = p.goals >= 4 ? 'stat-highlight' : '';
+        html += `<tr>
+          <td class="player-name">${p.name}</td>
+          <td>${p.country}</td>
+          <td>${p.played}</td>
+          <td class="${goalClass}">${p.goals}</td>
+          <td>${p.assists}</td>
+          <td><span style="color: ${p.statusColor || '#f59e0b'};">⭐ ${p.status || ''}</span></td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderDistanceCovered(data) {
+      const container = document.getElementById('distance-table');
+      if (!container || !data.distanceCovered) return;
+
+      let html = `<table class="player-table">
+        <thead><tr>
+          <th class="rank">#</th><th>Player</th><th>Country</th><th>Pos</th>
+          <th style="text-align:center;">Matches</th><th style="text-align:center;">Total km</th><th style="text-align:center;">Avg/Match</th>
+        </tr></thead><tbody>`;
+
+      for (const p of data.distanceCovered) {
+        const rankClass = getRankClass(p.rank);
+        const kmClass = p.totalKm >= 45 ? 'stat-highlight' : '';
+        const rowStyle = p.highlight ? 'background: rgba(239, 68, 68, 0.1);' : '';
+        html += `<tr style="${rowStyle}">
+          <td class="rank ${rankClass}">${p.rank}</td>
+          <td class="player-name">${p.name}</td>
+          <td>${p.country}</td><td>${p.position}</td>
+          <td style="text-align:center;">${p.matches}</td>
+          <td class="${kmClass}" style="text-align:center;">${p.totalKm}</td>
+          <td style="text-align:center;">${p.avgKm}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderRedCards(data) {
+      const container = document.getElementById('red-cards-table');
+      if (!container || !data.redCards) return;
+
+      let html = `<table class="player-table">
+        <thead><tr><th>Match</th><th>Player</th><th>Min</th><th>Reason</th></tr></thead><tbody>`;
+
+      for (const c of data.redCards) {
+        const rowStyle = c.highlight ? 'background: rgba(239, 68, 68, 0.2);' : '';
+        html += `<tr style="${rowStyle}">
+          <td>${c.match}</td>
+          <td class="player-name">${c.player}</td>
+          <td>${c.minute}</td>
+          <td>${c.reason}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderYellowCards(data) {
+      const container = document.getElementById('yellow-cards-table');
+      if (!container || !data.yellowCards) return;
+
+      let html = `<table class="player-table">
+        <thead><tr><th>#</th><th>Team</th><th>Pld</th><th>Cards</th></tr></thead><tbody>`;
+
+      for (const t of data.yellowCards) {
+        const cardClass = t.cards >= 6 ? 'stat-highlight' : '';
+        html += `<tr>
+          <td class="rank">${t.rank}</td>
+          <td class="player-name">${t.team}</td>
+          <td>${t.played}</td>
+          <td class="${cardClass}">${t.cards}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderPenalties(data) {
+      const container = document.getElementById('penalties-table');
+      if (!container || !data.penalties) return;
+
+      let html = `<table class="player-table">
+        <thead><tr><th>Match</th><th>For</th><th>Result</th></tr></thead><tbody>`;
+
+      for (const p of data.penalties) {
+        const resultStyle = p.result === 'scored' ? 'color: #22c55e;' : 'color: #ef4444;';
+        const resultText = p.result === 'scored' ? '⚽ Scored' : '❌ Missed';
+        html += `<tr>
+          <td>${p.match}</td>
+          <td class="player-name">${p.team}</td>
+          <td style="${resultStyle}">${resultText}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    function renderReferees(data) {
+      const container = document.getElementById('referees-table');
+      if (!container || !data.referees) return;
+
+      let html = `<table class="player-table">
+        <thead><tr><th>Referee</th><th>Country</th><th>Matches</th><th>Yellows</th><th>Reds</th><th>Pens</th></tr></thead><tbody>`;
+
+      for (const r of data.referees) {
+        html += `<tr>
+          <td>${r.name}</td>
+          <td>${r.country}</td>
+          <td style="text-align:center;">${r.matches}</td>
+          <td style="text-align:center;">${r.yellows}</td>
+          <td style="text-align:center;">${r.reds}</td>
+          <td style="text-align:center;">${r.penalties}</td>
+        </tr>`;
+      }
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    async function loadMatchData() {
+      try {
+        const response = await fetch('data/matches.json');
+        if (!response.ok) throw new Error('Failed to fetch matches.json: ' + response.status);
+        const data = await response.json();
+
+        renderBracket(data);
+        renderCompletedMatches(data);
+        renderUpcomingMatches(data);
+        renderDynamicMatchSummary(data);
+      } catch (error) {
+        console.error('Failed to load match data:', error);
+        const bracket = document.getElementById('bracket-container');
+        const completed = document.getElementById('completed-matches-table');
+        const upcoming = document.getElementById('upcoming-matches-table');
+        const note = document.getElementById('update-note');
+
+        if (bracket) bracket.innerHTML = '<p style="color: #ef4444;">Error loading bracket data.</p>';
+        if (completed) completed.innerHTML = '<p style="color: #888;">Failed to load match data.</p>';
+        if (upcoming) upcoming.innerHTML = '<p style="color: #888;">Failed to load match data.</p>';
+        if (note) note.textContent = 'Failed to load latest update.';
+      }
+    }
+
+    async function loadStatsData() {
+      try {
+        const response = await fetch('data/stats.json');
+        if (!response.ok) throw new Error('Failed to fetch stats.json: ' + response.status);
+        const data = await response.json();
+
+        renderTournamentStatsSummary(data);
+        renderGoldenBoot(data);
+        renderAssists(data);
+        renderStarPlayers(data);
+        renderDistanceCovered(data);
+        renderRedCards(data);
+        renderYellowCards(data);
+        renderPenalties(data);
+        renderReferees(data);
+      } catch (error) {
+        console.error('Failed to load stats data:', error);
+        const containers = [
+          'golden-boot-table', 'assists-table', 'star-players-table',
+          'distance-table', 'red-cards-table', 'yellow-cards-table',
+          'penalties-table', 'referees-table'
+        ];
+        containers.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = '<p style="color: #ef4444;">Error loading data. Try refreshing or use a local server.</p>';
+        });
+      }
+    }
+
+    loadMatchData();
+    loadStatsData();
+  </script>
+</body>
+</html>
